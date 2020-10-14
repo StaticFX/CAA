@@ -1,5 +1,7 @@
 package de.staticred.caa.commandapi.util;
 
+import de.staticred.caa.CAA;
+
 public abstract class Command {
 
 
@@ -7,10 +9,12 @@ public abstract class Command {
     private String command;
     private CommandSender commandSender;
     private String[] args;
+    private String description;
 
-    public Command(String prefix, String command) {
-        this.prefix = prefix;
+    public Command(String prefix, String command, String description) {
         this.command = command;
+        this.description = description;
+        this.prefix = prefix;
     }
 
     public abstract void execute(String prefix, String command, CommandSender sender, String[] args);
@@ -30,5 +34,9 @@ public abstract class Command {
 
     public String[] getArgs() {
         return args;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

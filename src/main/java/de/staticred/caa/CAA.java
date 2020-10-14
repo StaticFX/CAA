@@ -19,6 +19,7 @@ package de.staticred.caa;
  */
 
 import de.staticred.caa.commandapi.CommandHandler;
+import de.staticred.caa.task.ConsoleInputListener;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
@@ -48,6 +49,7 @@ public class CAA {
 
     //init CAA, this needs to be called to make this API work
     public CAA(boolean processCommands) {
+        apiInstance = this;
         //main start method of CAA
 
         //if true caa will automatically process registered commands
@@ -56,10 +58,13 @@ public class CAA {
         //if there is no timer specified by the user there will be one created by the caa.
         service = new Timer(true);
 
+        startCAA();
     }
 
     //can be used to use an already used scheduler as consoleListener, otherwise one will be created.
     public CAA(Timer service, boolean processCommands) {
+        apiInstance = this;
+
         //main start method of CAA
 
         //if true caa will automatically process registered commands
@@ -72,6 +77,7 @@ public class CAA {
     }
 
     public CAA(InputStream in, Timer service, boolean processCommands) {
+        apiInstance = this;
         //main start method of CAA
 
         //if true caa will automatically process registered commands
@@ -87,6 +93,7 @@ public class CAA {
     }
 
     public CAA(InputStream in, boolean processCommands) {
+        apiInstance = this;
         //main start method of CAA
 
         //if true caa will automatically process registered commands
@@ -111,5 +118,6 @@ public class CAA {
 
     private void startCAA() {
         if(processCommands) commandHandler = new CommandHandler();
+        service.scheduleAtFixedRate(new ConsoleInputListener(),1,1);
     }
 }

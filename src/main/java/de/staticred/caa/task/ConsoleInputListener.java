@@ -41,14 +41,24 @@ public class ConsoleInputListener extends TimerTask {
 
                 for(Command registeredCommand : CAA.getAPI().commandHandler.getRegisteredCommands()) {
                     String prefix = registeredCommand.getPrefix();
-                    if(input.startsWith(input.substring(prefix.length()))) {
+                    if(input.startsWith(input.substring(0,prefix.length()))) {
                         String inputCommand = input.substring(prefix.length());
                         if(registeredCommand.getCommand().equalsIgnoreCase(inputCommand)) {
                             registeredCommand.execute(prefix,inputCommand,new ConsoleSender("*"),args);
                             return;
                         }
                     }
+                    if(input.startsWith("?")) {
+                        String inputCommand = input.substring(1);
+                        if(inputCommand.equalsIgnoreCase(registeredCommand.getCommand())) {
+                            System.out.println("Description for command " + registeredCommand.getCommand() + ": " + registeredCommand.getDescription());
+                            return;
+                        }
+                    }
                 }
+
+                System.out.println("Command not found!");
+
             }
 
 
