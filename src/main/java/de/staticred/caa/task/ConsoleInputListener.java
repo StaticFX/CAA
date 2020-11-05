@@ -7,6 +7,7 @@ import de.staticred.caa.eventapi.EventHandler;
 import de.staticred.caa.eventapi.events.CommandProcessEvent;
 import de.staticred.caa.eventapi.events.ConsoleInputEvent;
 import de.staticred.caa.eventapi.util.Event;
+import de.staticred.caa.util.ConsoleColors;
 
 import java.util.Scanner;
 import java.util.TimerTask;
@@ -45,19 +46,22 @@ public class ConsoleInputListener extends TimerTask {
                         String inputCommand = input.substring(prefix.length());
                         if(registeredCommand.getCommand().equalsIgnoreCase(inputCommand)) {
                             registeredCommand.execute(prefix,inputCommand,new ConsoleSender("*"),args);
+                            System.out.print(CAA.getAPI().getPrefix());
                             return;
                         }
                     }
                     if(input.startsWith("?")) {
                         String inputCommand = input.substring(1);
                         if(inputCommand.equalsIgnoreCase(registeredCommand.getCommand())) {
-                            System.out.println("Description for command " + registeredCommand.getCommand() + ": " + registeredCommand.getDescription());
+                            System.out.println(ConsoleColors.GREEN + "Description for command " + registeredCommand.getCommand() + ": " + registeredCommand.getDescription());
+                            System.out.print(CAA.getAPI().getPrefix());
                             return;
                         }
                     }
                 }
 
-                System.out.println("Command not found!");
+                System.out.println(ConsoleColors.RED + "Command not found!");
+                System.out.print(CAA.getAPI().getPrefix());
 
             }
 

@@ -37,6 +37,8 @@ public class CAA {
     //scanner used to listen to any kind of inputstream
     private Scanner scanner;
 
+    private String prefix = "";
+
     @Nullable
     public CommandHandler commandHandler = null;
     
@@ -51,6 +53,9 @@ public class CAA {
     public CAA(boolean processCommands) {
         apiInstance = this;
         //main start method of CAA
+
+        //prefix used in the console before the cursor
+
 
         //if true caa will automatically process registered commands
         this.processCommands = processCommands;
@@ -119,5 +124,13 @@ public class CAA {
     private void startCAA() {
         if(processCommands) commandHandler = new CommandHandler();
         service.scheduleAtFixedRate(new ConsoleInputListener(),1,1);
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 }
