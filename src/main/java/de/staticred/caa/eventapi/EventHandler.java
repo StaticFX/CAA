@@ -11,6 +11,15 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * EventHandler class will search in any registered listeners,
+ * if the fired event is in that.
+ *
+ * If it is, it will invoke the method of the class
+ *
+ * @author Devin
+ * @version 1.0.0
+ */
 public class EventHandler {
     List<Listener> eventList = new ArrayList<>();
 
@@ -28,7 +37,10 @@ public class EventHandler {
         return eventList;
     }
 
-
+    /**
+     * Searches trough the listeners and fires the event
+     * @param event to fire
+     */
     public static void fireEvent(Event event) {
         for(Listener listener : EventHandler.instance.eventList) {
             for(final Method method : listener.getClass().getMethods()) {

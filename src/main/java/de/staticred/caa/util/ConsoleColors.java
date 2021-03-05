@@ -1,5 +1,11 @@
 package de.staticred.caa.util;
 
+/**
+ * Console color class
+ *
+ * @author Devin
+ * @version 1.0.0
+ */
 public class ConsoleColors {
     public static final String RESET = "\033[0m";  // Text Reset
 

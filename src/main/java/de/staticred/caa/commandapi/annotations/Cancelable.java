@@ -1,4 +1,4 @@
-package de.staticred.caa.eventapi.util;
+package de.staticred.caa.commandapi.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,15 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * CAAEvent to mark a method as an event
+ * Shows that an event is cancelable
  *
- * @author Devin
+ * @author Devin Fritz
  * @version 1.0.0
  */
-public @interface CAAEvent {
+public @interface Cancelable {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.METHOD)
     public @interface BotEvent {}
-
 }
